@@ -1,7 +1,7 @@
-import { AppModule } from "@/app.module"
-import { PrismaService } from "@/prisma/prisma.service"
-import { INestApplication } from "@nestjs/common"
-import { JwtService } from "@nestjs/jwt"
+import { AppModule } from '@/app.module'
+import { PrismaService } from '@/prisma/prisma.service'
+import { INestApplication } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
@@ -18,7 +18,7 @@ describe('Create question (E2E)', () => {
     app = moduleRef.createNestApplication()
     prisma = moduleRef.get(PrismaService)
     jwt = moduleRef.get(JwtService)
-    
+
     await app.init()
   })
 

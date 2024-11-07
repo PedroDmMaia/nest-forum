@@ -1,6 +1,6 @@
-import { AppModule } from "@/app.module"
-import { PrismaService } from "@/prisma/prisma.service"
-import { INestApplication } from "@nestjs/common"
+import { AppModule } from '@/app.module'
+import { PrismaService } from '@/prisma/prisma.service'
+import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
@@ -16,7 +16,7 @@ describe('Create account (E2E)', () => {
     app = moduleRef.createNestApplication()
 
     prisma = moduleRef.get(PrismaService)
-    
+
     await app.init()
   })
 
@@ -24,7 +24,7 @@ describe('Create account (E2E)', () => {
     const response = await request(app.getHttpServer()).post('/accounts').send({
       name: 'jhon doe',
       email: 'johndoe@example.com',
-      password: '123456'
+      password: '123456',
     })
 
     expect(response.statusCode).toBe(201)

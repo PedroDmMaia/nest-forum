@@ -1,8 +1,8 @@
-import { AppModule } from "@/app.module"
-import { PrismaService } from "@/prisma/prisma.service"
-import { INestApplication } from "@nestjs/common"
+import { AppModule } from '@/app.module'
+import { PrismaService } from '@/prisma/prisma.service'
+import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
-import { hash } from "bcryptjs"
+import { hash } from 'bcryptjs'
 import request from 'supertest'
 
 describe('Autheticate (E2E)', () => {
@@ -17,7 +17,7 @@ describe('Autheticate (E2E)', () => {
     app = moduleRef.createNestApplication()
 
     prisma = moduleRef.get(PrismaService)
-    
+
     await app.init()
   })
 
@@ -37,7 +37,7 @@ describe('Autheticate (E2E)', () => {
 
     expect(response.statusCode).toBe(201)
     expect(response.body).toEqual({
-      access_token: expect.any(String)
+      access_token: expect.any(String),
     })
   })
 })
