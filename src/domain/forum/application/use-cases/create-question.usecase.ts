@@ -14,7 +14,7 @@ interface CreateQuestionUseCaseRequest {
 
 type CreateQuestionUseCaseRequestResponse = Either<null, { question: Question }>
 
-export class CreateQuestionUseCaseUseCase {
+export class CreateQuestionUseCase {
   constructor(private questionRepository: QuestionRepository) {}
   async execute({
     authorId,
