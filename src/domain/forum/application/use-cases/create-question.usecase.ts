@@ -4,6 +4,7 @@ import { QuestionRepository } from '../repositories/question.reposotory'
 import { Either, right } from '@/core/either'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
 import { QuestionAttchemntList } from '../../enterprise/entities/questions-attachment-list'
+import { Injectable } from '@nestjs/common'
 
 interface CreateQuestionUseCaseRequest {
   authorId: string
@@ -14,6 +15,7 @@ interface CreateQuestionUseCaseRequest {
 
 type CreateQuestionUseCaseRequestResponse = Either<null, { question: Question }>
 
+@Injectable()
 export class CreateQuestionUseCase {
   constructor(private questionRepository: QuestionRepository) {}
   async execute({

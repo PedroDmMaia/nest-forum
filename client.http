@@ -29,6 +29,7 @@ post {{baseUrl}}/questions
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
+// If you want to create a new question you must change the title with each request
 {
   "title": "this is a title for one question",
   "content": "this is a content for one question"
