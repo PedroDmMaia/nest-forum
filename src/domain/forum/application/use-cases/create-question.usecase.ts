@@ -1,6 +1,6 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Question } from '../../enterprise/entities/question'
-import { QuestionRepository } from '../repositories/question.reposotory'
+import { QuestionRepository } from '../repositories/question.repository'
 import { Either, right } from '@/core/either'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
 import { QuestionAttchemntList } from '../../enterprise/entities/questions-attachment-list'

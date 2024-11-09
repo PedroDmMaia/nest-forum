@@ -1,5 +1,5 @@
 import { PaginationParams } from '@/core/repositories/pagination-parms.repository'
-import { QuestionRepository } from '@/domain/forum/application/repositories/question.reposotory'
+import { QuestionRepository } from '@/domain/forum/application/repositories/question.repository'
 import { Question } from '@/domain/forum/enterprise/entities/question'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'

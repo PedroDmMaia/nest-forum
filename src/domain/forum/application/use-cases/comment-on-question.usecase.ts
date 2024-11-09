@@ -1,5 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import { QuestionRepository } from '../repositories/question.reposotory'
+import { QuestionRepository } from '../repositories/question.repository'
 import { QuestionComment } from '../../enterprise/entities/question-comment'
 import { QuestionCommentRepository } from '../repositories/question-comments.repository'
 import { Either, left, right } from '@/core/either'

@@ -1,6 +1,6 @@
 import { AnswerRepository } from '../repositories/answer.repository'
 import { Question } from '../../enterprise/entities/question'
-import { QuestionRepository } from '../repositories/question.reposotory'
+import { QuestionRepository } from '../repositories/question.repository'
 import { Either, left, right } from '@/core/either'
 import { ResourceNotFounError } from '@/core/errors/error/resource-not-founs.error'
 import { NotAllowedError } from '@/core/errors/error/not-allowed.error'
