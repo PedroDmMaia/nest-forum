@@ -1,10 +1,13 @@
 import { faker } from '@faker-js/faker'
 
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import { Answer } from '@/domain/forum/enterprise/entities/answer'
+import { Answer, AnswerProps } from '@/domain/forum/enterprise/entities/answer'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { Injectable } from '@nestjs/common'
+import { PrismaAnswerMapper } from '@/infra/database/prisma/mappers/prisma-answer.mapper'
 
 export function MakeAnswer(
-  override: Partial<Answer> = {},
+  override: Partial<AnswerProps> = {},
   id?: UniqueEntityId,
 ) {
   const answer = Answer.create(
@@ -18,4 +21,19 @@ export function MakeAnswer(
   )
 
   return answer
+}
+
+@Injectable()
+export class AnswerFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async makePrismaQuestion(data: Partial<AnswerProps> = {}): Promise<Answer> {
+    const answer = MakeAnswer(data)
+
+    await this.prisma.answer.create({
+      data: PrismaAnswerMapper.toPrisma(answer),
+    })
+
+    return answer
+  }
 }
