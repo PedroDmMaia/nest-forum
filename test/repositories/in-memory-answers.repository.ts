@@ -31,8 +31,6 @@ export class InMemoryAnswerRepository implements AnswerRepository {
     this.items.push(answer)
 
     DomainEvents.dispatchEventsForAggregate(answer.id)
-
-    return answer
   }
 
   async save(answer: Answer): Promise<void> {
