@@ -3,6 +3,7 @@ import { QuestionCommentRepository } from '@/domain/forum/application/repositori
 import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
+import { PrismaQuestionCommentMapper } from '../mappers/prisma-question-comment.mapper'
 
 @Injectable()
 export class PrismaQuestionCommentRepository
@@ -10,22 +11,45 @@ export class PrismaQuestionCommentRepository
 {
   constructor(private prisma: PrismaService) {}
 
-  findById(id: string): Promise<QuestionComment | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string): Promise<QuestionComment | null> {
+    const question = await this.prisma.comment.findUnique({
+      where: { id },
+    })
+
+    if (!question) {
+      return null
+    }
+
+    return PrismaQuestionCommentMapper.toDomain(question)
   }
 
-  findManyByQuestioId(
+  async findManyByQuestioId(
     questionId: string,
-    params: PaginationParams,
+    { page }: PaginationParams,
   ): Promise<QuestionComment[]> {
-    throw new Error('Method not implemented.')
+    const questionsComments = await this.prisma.comment.findMany({
+      where: { questionId },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return questionsComments.map(PrismaQuestionCommentMapper.toDomain)
   }
 
-  create(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
+  async create(questionComment: QuestionComment): Promise<void> {
+    const data = PrismaQuestionCommentMapper.toPrisma(questionComment)
+
+    await this.prisma.comment.create({
+      data,
+    })
   }
 
-  delete(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(questionComment: QuestionComment): Promise<void> {
+    await this.prisma.comment.delete({
+      where: { id: questionComment.id.toString() },
+    })
   }
 }
