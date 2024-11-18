@@ -1,12 +1,12 @@
 import { InMemoryAnswerRepository } from 'test/repositories/in-memory-answers.repository'
-import { FetchRecentAnswersUseCaseUseCase } from './fetch-recent-answers.use.case'
+import { FetchQuestionAnswersUseCase } from './fetch-question-answers.use.case'
 import { MakeAnswer } from 'test/factories/make-answers.factory'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { InMemoryAnswerAttachmentRepository } from 'test/repositories/in-memory-answer-attachments.repository'
 
 let inMemoryAnswerAttachmentRepository: InMemoryAnswerAttachmentRepository
 let inMemoryAnswersRepository: InMemoryAnswerRepository
-let sut: FetchRecentAnswersUseCaseUseCase
+let sut: FetchQuestionAnswersUseCase
 
 describe('Fetch recent answers', () => {
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('Fetch recent answers', () => {
     inMemoryAnswersRepository = new InMemoryAnswerRepository(
       inMemoryAnswerAttachmentRepository,
     )
-    sut = new FetchRecentAnswersUseCaseUseCase(inMemoryAnswersRepository)
+    sut = new FetchQuestionAnswersUseCase(inMemoryAnswersRepository)
   })
 
   it('should be able to fetch question amswer', async () => {
@@ -32,7 +32,7 @@ describe('Fetch recent answers', () => {
     )
 
     const result = await sut.execute({
-      quetionId: 'question-01',
+      questionId: 'question-01',
       page: 1,
     })
 
@@ -49,7 +49,7 @@ describe('Fetch recent answers', () => {
     }
 
     const result = await sut.execute({
-      quetionId: 'question-01',
+      questionId: 'question-01',
       page: 2,
     })
 
