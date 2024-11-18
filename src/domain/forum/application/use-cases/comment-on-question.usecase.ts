@@ -4,6 +4,7 @@ import { QuestionComment } from '../../enterprise/entities/question-comment'
 import { QuestionCommentRepository } from '../repositories/question-comments.repository'
 import { Either, left, right } from '@/core/either'
 import { ResourceNotFounError } from '@/core/errors/error/resource-not-founs.error'
+import { Injectable } from '@nestjs/common'
 
 interface CommentOnQuestionUseCaseRequest {
   authorId: string
@@ -11,12 +12,13 @@ interface CommentOnQuestionUseCaseRequest {
   content: string
 }
 
-type CommentOnQuestionUseCaseRequestResponse = Either<
+type CommentOnQuestionUseCasetResponse = Either<
   ResourceNotFounError,
   { questionComment: QuestionComment }
 >
 
-export class CommentOnQuestionUseCaseUseCase {
+@Injectable()
+export class CommentOnQuestionUseCase {
   constructor(
     private questionRepository: QuestionRepository,
     private questionCommentRepository: QuestionCommentRepository,
@@ -26,7 +28,7 @@ export class CommentOnQuestionUseCaseUseCase {
     authorId,
     questionId,
     content,
-  }: CommentOnQuestionUseCaseRequest): Promise<CommentOnQuestionUseCaseRequestResponse> {
+  }: CommentOnQuestionUseCaseRequest): Promise<CommentOnQuestionUseCasetResponse> {
     const question = await this.questionRepository.findById(questionId)
 
     if (!question) {
