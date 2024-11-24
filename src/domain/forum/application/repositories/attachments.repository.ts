@@ -1,5 +1,5 @@
 import { Attachment } from '../../enterprise/entities/attachment'
 
-export abstract class AttachmentsRepositorys {
+export abstract class AttachmentsRepository {
   abstract create(attachment: Attachment): Promise<void>
 }

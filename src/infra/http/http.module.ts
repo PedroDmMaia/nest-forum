@@ -39,7 +39,7 @@ import { FecthAnswerCommentsController } from './controllers/fetch-answer-commen
 import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-answer-comment.usecase'
 import { UploadAttachmentController } from './controllers/upload-attachment.controller'
 import { StorageModule } from '../storage/storage.module'
-import { UploadAndCreateAttachmentUseCase } from '@/domain/forum/application/use-cases/upload-and-create-attachments.controller'
+import { UploadAndCreateAttachmentUseCase } from '@/domain/forum/application/use-cases/upload-and-create-attachments.usecase'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule, StorageModule],
