@@ -53,14 +53,14 @@ export class EditQuestionUseCase {
       currentQuestionAttachments,
     )
 
-    const questionAttachment = attachmensIds.map((attachmentId) => {
+    const questionAttachments = attachmensIds.map((attachmentId) => {
       return QuestionAttachment.create({
         attachmentId: new UniqueEntityId(attachmentId),
         questionId: question.id,
       })
     })
 
-    questionAttachmentList.update(questionAttachment)
+    questionAttachmentList.update(questionAttachments)
 
     question.attachments = questionAttachmentList
     question.title = title
@@ -68,6 +68,8 @@ export class EditQuestionUseCase {
 
     await this.questionRepository.save(question)
 
-    return right({ question })
+    return right({
+      question,
+    })
   }
 }
